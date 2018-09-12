@@ -1,4 +1,8 @@
 class Project < ApplicationRecord
-    has_many :tasks
-    validates_presence_of :title, :description, :owner
+    has_many :tasks, dependent: :destroy
+    validates_presence_of [
+        :title, 
+        :description, 
+        :owner, 
+        ]
 end
