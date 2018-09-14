@@ -1,7 +1,9 @@
-class ProjectsController < ApplicationController
+class ProjectsController < ApiController
+    before_action :require_login
     before_action :set_project, only: [:show, :update, :destroy]
+
     def index 
-        @projects = Project.all 
+        @projects = current_user.projects
         json_response(@projects)
     end
     
@@ -23,6 +25,7 @@ class ProjectsController < ApplicationController
         @project = Project.create!(project_params)
         json_response(@project, :created)
     end
+    
     private
     
     def project_params 

@@ -1,4 +1,5 @@
-class TasksController < ApplicationController
+class TasksController < ApiController
+    before_action :require_login
     before_action :set_project, only:[:index, :create]
     before_action :set_task, only:[:show, :update, :destroy]
     

@@ -1,9 +1,20 @@
+USERS = []
+
+2.times do 
+    user = {
+        name: Faker::Internet.name,
+        email: Faker::Internet.email, 
+        password: 'secret'
+    }
+    USERS << user
+end
+
 PROJECTS = []
 2.times do 
     project = {
         :title => Faker::Space.launch_vehicule,
         :budget => rand(100..1000),
-        :owner => rand(0..5),
+        :owner => rand(1..2),
         :delivery_date => Faker::Date.forward(rand(10..20)),
         :contact_name => Faker::Name.name,
         :contact_email => Faker::Internet.email,
@@ -25,6 +36,10 @@ TASKS = []
     TASKS << task
 end
 
+USERS.each do |user|
+    @user = User.create!(user)
+    puts 'user created' if @user
+end
 
 PROJECTS.each do |project|
     @project = Project.create!(project)
