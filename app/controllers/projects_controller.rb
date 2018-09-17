@@ -8,13 +8,21 @@ class ProjectsController < ApiController
     end
     
     def update
+        if current_user.id == @project.owner
         @project.update(project_params)
-        head :no_content
+        head :no_content 
+        else
+            json_response(message:'unauthorized')
+        end
     end
     
     def destroy 
+        if current_user == @project.owner
         @project.destroy
-        head :no_content
+        head :no_content 
+        else 
+            json_response(message:'unauthorized')
+        end
     end
     
     def show 
@@ -44,4 +52,5 @@ class ProjectsController < ApiController
     def set_project
         @project = Project.find(params[:id])
     end
+    
 end

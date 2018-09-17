@@ -1,12 +1,22 @@
-USERS = []
+PROJECT_OWNERS = []
+OTHER_USERS = []
 
 2.times do 
     user = {
-        name: Faker::Internet.name,
+        name: Faker::Internet.username,
         email: Faker::Internet.email, 
         password: 'secret'
     }
-    USERS << user
+    PROJECT_OWNERS << user
+end
+
+10.times do 
+    user = {
+        name: Faker::Internet.username,
+        email: Faker::Internet.email, 
+        password: 'secret'
+    }
+    OTHER_USERS << user
 end
 
 PROJECTS = []
@@ -36,7 +46,7 @@ TASKS = []
     TASKS << task
 end
 
-USERS.each do |user|
+PROJECT_OWNERS.each do |user|
     @user = User.create!(user)
     puts 'user created' if @user
 end
@@ -50,3 +60,10 @@ TASKS.each do |task|
     @task = Project.find(rand(1..2)).tasks.create!(task)
     puts 'task created' if @task
 end
+
+OTHER_USERS.each do |user|
+    @user = User.create!(user)
+    @user.projects << Project.find(rand(1..2))
+end
+
+puts 'users created and added to project'
