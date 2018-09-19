@@ -4,6 +4,8 @@ class User < ApplicationRecord
     has_secure_password
     has_secure_token :auth_token
     has_and_belongs_to_many :projects
+    has_many :activities
+    
     def invalidate_token 
         self.update_columns(auth_token: nil)
     end 
