@@ -7,4 +7,5 @@ class Project < ApplicationRecord
         :description, 
         :owner, 
         ]
+    enum status:[:open, :in_progress, :hold, :delivered, :completed, :canceled]
 end
