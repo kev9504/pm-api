@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  
   resources :users
   resources :projects do 
       resources :tasks
@@ -9,5 +8,4 @@ Rails.application.routes.draw do
   delete 'logout' => "sessions#destroy"
   get '/profile' => "users#profile"
   delete '/profile' => "users#delete"
-  
 end
