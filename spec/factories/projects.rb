@@ -8,5 +8,6 @@ FactoryBot.define do
     contact_phone { (Faker::PhoneNumber.subscriber_number + rand(100..300).to_s).to_i }
     status { rand(0..6) }
     description { Faker::Lorem.paragraph }
+
   end
 end
