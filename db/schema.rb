@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2018_09_18_230711) do
   enable_extension "plpgsql"
 
   create_table "activities", force: :cascade do |t|
-    t.text "comment"
+    t.text "description"
     t.integer "time_spent"
     t.bigint "user_id"
     t.bigint "project_id"
@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(version: 2018_09_18_230711) do
     t.string "contact_name"
     t.string "contact_email"
     t.integer "contact_phone"
-    t.integer "status"
+    t.integer "status", default: 0
     t.text "description"
+    t.text "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,9 +48,9 @@ ActiveRecord::Schema.define(version: 2018_09_18_230711) do
 
   create_table "tasks", force: :cascade do |t|
     t.bigint "project_id"
-    t.text "body"
+    t.text "description"
     t.string "source"
-    t.string "status"
+    t.integer "status", default: 0
     t.integer "difficulty"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end

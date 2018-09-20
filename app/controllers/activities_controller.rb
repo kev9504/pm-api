@@ -29,7 +29,7 @@ class ActivitiesController < ApiController
     end
     
     def activities_params
-        params.permit(:comment, :time_spent, :user_id, :project_id)
+        params.permit(:description, :time_spent, :user_id, :project_id)
     end
     
     def set_activity
