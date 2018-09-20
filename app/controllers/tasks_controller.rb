@@ -38,7 +38,7 @@ class TasksController < ApiController
     
     def task_params
         params.permit(
-            :body, 
+            :description, 
             :source, 
             :status, 
             :difficulty,

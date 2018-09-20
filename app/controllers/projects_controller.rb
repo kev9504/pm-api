@@ -45,7 +45,8 @@ class ProjectsController < ApiController
             :contact_email, 
             :contact_phone,
             :status,
-            :description
+            :description, 
+            :code
             )
     end
     

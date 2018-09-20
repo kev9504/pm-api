@@ -20,13 +20,13 @@ PROJECT_OWNERS.each do |user|
         :contact_name => Faker::Name.name,
         :contact_email => Faker::Internet.email,
         :contact_phone => (Faker::PhoneNumber.subscriber_number + rand(100..300).to_s).to_i,
-        :status => rand(0..6),
+        :status => rand(0..5),
         :description => Faker::HitchhikersGuideToTheGalaxy.quote,
         :owner => @user.id
         )
         4.times do 
             @project.tasks.create!(
-                body: "add #{Faker::Measurement.metric_weight} of #{Faker::Science.element}",
+                description: "add #{Faker::Measurement.metric_weight} of #{Faker::Science.element}",
                 source: Faker::ProgrammingLanguage.name,
                 status: rand(0..2),
                 difficulty: rand(0..10)
@@ -48,4 +48,15 @@ OTHER_USERS.each do |user|
     @user = User.create!(user)
     Project.find(rand(1..2)).users << @user
 end
-puts 'users added to project'
+puts 'users added to projects'
+
+Project.all.each do |project|
+    5.times do 
+        project.users.first.activities.create!(
+            description: Faker::FamousLastWords.last_words,
+            time_spent: rand(0..60),
+            project_id: project.id
+            )
+    end
+end
+puts 'added activities to projects'
