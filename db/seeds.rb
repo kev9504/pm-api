@@ -10,16 +10,18 @@ OTHER_USERS = []
     PROJECT_OWNERS << user
 end
 
+User.create!(name: 'test user', email: 'test@email.com', password:'secret')
+
 PROJECT_OWNERS.each do |user|
     @user = User.create!(user)
-    2.times do 
+    10.times do 
         @project = @user.projects.create!(
         :title => Faker::Space.launch_vehicule,
         :budget => rand(100..1000),
         :delivery_date => Faker::Date.forward(rand(10..20)),
         :contact_name => Faker::Name.name,
         :contact_email => Faker::Internet.email,
-        :contact_phone => (Faker::PhoneNumber.subscriber_number + rand(100..300).to_s).to_i,
+        :contact_phone => (Faker::PhoneNumber.subscriber_number + rand(100..300).to_s),
         :status => rand(0..5),
         :description => Faker::HitchhikersGuideToTheGalaxy.quote,
         :owner => @user.id

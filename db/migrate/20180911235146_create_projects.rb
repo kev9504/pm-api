@@ -8,7 +8,7 @@ class CreateProjects < ActiveRecord::Migration[5.2]
       t.date :delivery_date 
       t.string :contact_name 
       t.string :contact_email
-      t.integer :contact_phone
+      t.string :contact_phone
       t.integer :status, default: 0
       t.text :description
       t.text :code

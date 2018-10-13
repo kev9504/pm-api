@@ -31,6 +31,9 @@ class ProjectsController < ApiController
     
     def create 
         @project = Project.create!(project_params)
+        @project.owner = current_user.id
+        @project.users << current_user
+        @project.save
         json_response(@project, :created)
     end
     
@@ -46,7 +49,7 @@ class ProjectsController < ApiController
             :contact_phone,
             :status,
             :description, 
-            :code
+            :delivery_date
             )
     end
     

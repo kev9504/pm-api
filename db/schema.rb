@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_09_18_230711) do
     t.date "delivery_date"
     t.string "contact_name"
     t.string "contact_email"
-    t.integer "contact_phone"
+    t.string "contact_phone"
     t.integer "status", default: 0
     t.text "description"
     t.text "code"

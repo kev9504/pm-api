@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
     after_initialize :set_defaults
-    before_save :set_defaults
+
     
     has_many :tasks, dependent: :destroy
     has_many :activities, dependent: :destroy
@@ -15,7 +15,8 @@ class Project < ApplicationRecord
     enum status:[:open, :in_progress, :hold, :delivered, :completed, :canceled]
 
     def set_defaults
-        self.code = BCrypt::Password.create(self.id)[0..10]
+        self.code ||= BCrypt::Password.create(self.id)[0..10]
+        self.owner ||= 0
     end
     
     def time_spent
@@ -27,10 +28,14 @@ class Project < ApplicationRecord
     end
     
     def percentage_completed
-        if self.tasks
-            completed_tasks = self.tasks.completed.count
-            open_tasks = self.tasks.open.count
-            return (completed_tasks * 100) / open_tasks
+        if (self.tasks) && (self.tasks.completed.count > 0)
+            completed_tasks = self.tasks.completed.count.to_f
+            total_tasks = completed_tasks + self.tasks.open.count.to_f
+            completion = completed_tasks/total_tasks
+            completion = completion * 100
+            
+            completion.round(2)
+            
         else
             0
         end
@@ -43,5 +48,8 @@ class Project < ApplicationRecord
             0
         end
     end
-
+    
+    def update_project
+        self.updated_at = Time.now
+    end
 end

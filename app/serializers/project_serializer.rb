@@ -10,7 +10,8 @@ class ProjectSerializer < ActiveModel::Serializer
                 :percentage_completed, 
                 :description, 
                 :status, 
-                :points
+                :points,
+                :delivery_date
     
     has_many :tasks
     has_many :activities
