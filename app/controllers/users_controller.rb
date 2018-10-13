@@ -28,7 +28,7 @@ class UsersController < ApiController
     end
     
     def set_user 
-        @user = User.find_by_auth_token!(request.headers[:token])
+        @user = User.find_by_auth_token!(request.headers[:Authorization])
     end
     
 end
