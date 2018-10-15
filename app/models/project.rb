@@ -1,6 +1,5 @@
 class Project < ApplicationRecord
     after_initialize :set_defaults
-
     
     has_many :tasks, dependent: :destroy
     has_many :activities, dependent: :destroy
@@ -15,7 +14,7 @@ class Project < ApplicationRecord
     enum status:[:open, :in_progress, :hold, :delivered, :completed, :canceled]
 
     def set_defaults
-        self.code ||= BCrypt::Password.create(self.id)[0..10]
+        self.code ||= BCrypt::Password.create(self.id.to_s + self.title)[0..20]
         self.owner ||= 0
     end
     

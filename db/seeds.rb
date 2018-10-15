@@ -9,7 +9,6 @@ OTHER_USERS = []
     }
     PROJECT_OWNERS << user
 end
-
 User.create!(name: 'test user', email: 'test@email.com', password:'secret')
 
 PROJECT_OWNERS.each do |user|
@@ -24,7 +23,8 @@ PROJECT_OWNERS.each do |user|
         :contact_phone => (Faker::PhoneNumber.subscriber_number + rand(100..300).to_s),
         :status => rand(0..5),
         :description => Faker::HitchhikersGuideToTheGalaxy.quote,
-        :owner => @user.id
+        :owner => @user.id,
+        :domain => Faker::Internet.domain_name
         )
         4.times do 
             @project.tasks.create!(

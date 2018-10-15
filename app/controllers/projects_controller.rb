@@ -3,7 +3,7 @@ class ProjectsController < ApiController
     before_action :set_project, only: [:show, :update, :destroy]
 
     def index 
-        @projects = current_user.projects
+        @projects = current_user.projects.sort
         json_response(@projects)
     end
     
@@ -12,7 +12,7 @@ class ProjectsController < ApiController
         @project.update(project_params)
         head :no_content 
         else
-            json_response(message:'unauthorized')
+            render_unauthorized('unable to process request, only owner can modify project')
         end
     end
     
@@ -21,7 +21,7 @@ class ProjectsController < ApiController
         @project.destroy
         head :no_content 
         else 
-            json_response(message:'unauthorized')
+            render_unauthorized('unable to process request, only owner can modify project')
         end
     end
     
@@ -49,7 +49,8 @@ class ProjectsController < ApiController
             :contact_phone,
             :status,
             :description, 
-            :delivery_date
+            :delivery_date,
+            :domain
             )
     end
     
