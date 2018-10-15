@@ -11,7 +11,11 @@ class ProjectSerializer < ActiveModel::Serializer
                 :description, 
                 :status, 
                 :points,
-                :delivery_date
+                :delivery_date,
+                :domain,
+                :created_at,
+                :code,
+                :updated_at
     
     has_many :tasks
     has_many :activities
