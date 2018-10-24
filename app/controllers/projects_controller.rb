@@ -3,8 +3,13 @@ class ProjectsController < ApiController
     before_action :set_project, only: [:show, :update, :destroy]
 
     def index 
-        @projects = current_user.projects.sort
+        @projects = current_user.projects.reorder("id DESC").paginate(page: params[:page], per_page: 5)
         json_response(@projects)
+    end
+    
+    def projects_length
+        @projects_length=current_user.projects.count
+        json_response(@projects_length)
     end
     
     def update

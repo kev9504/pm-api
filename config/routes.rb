@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users
+  get '/projects/projects_length'=>'projects#projects_length'
   resources :projects do 
       resources :tasks
       resources :activities
