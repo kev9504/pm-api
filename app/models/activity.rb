@@ -10,4 +10,7 @@ class Activity < ApplicationRecord
   def update_project
     self.project.update_project
   end
+  def username
+    self.user.email
+  end
 end
