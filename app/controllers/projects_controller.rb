@@ -1,6 +1,18 @@
 class ProjectsController < ApiController
-    before_action :require_login
+    before_action :require_login, except: [:contact]
     before_action :set_project, only: [:show, :update, :destroy]
+    
+    def contact
+        request_data = params.permit(
+            :contact_name, 
+            :contact_email,
+            :description).merge(defaults)
+        @project = Project.create!(request_data)
+        @project.owner = 1
+        @project.users << User.find(1)
+        @project.save
+        json_response(@project, :created)
+    end
 
     def index 
         @projects = current_user.projects.reorder("id DESC").paginate(page: params[:page], per_page: 5)
@@ -61,6 +73,18 @@ class ProjectsController < ApiController
     
     def set_project
         @project = Project.find(params[:id])
+    end
+    
+    def defaults
+        {
+            title: 'contact form request',
+            budget: 0,
+            owner: 1,
+            contact_phone: 'default',
+            status: 0,
+            delivery_date: Date.tomorrow,
+            domain: 'default',
+        }
     end
     
 end
