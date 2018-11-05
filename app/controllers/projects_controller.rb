@@ -3,6 +3,7 @@ class ProjectsController < ApiController
     before_action :set_project, only: [:show, :update, :destroy]
     
     def contact
+        #here it should be specified the owner of the project
         request_data = params.permit(
             :contact_name, 
             :contact_email,
@@ -27,7 +28,7 @@ class ProjectsController < ApiController
     def update
         if current_user.id == @project.owner
         @project.update(project_params)
-        head :no_content 
+        json_response(@project)
         else
             render_unauthorized('unable to process request, only owner can modify project')
         end
