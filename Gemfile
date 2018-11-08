@@ -11,10 +11,10 @@ gem 'bcrypt'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'will_paginate', '~> 3.1.0'
+gem 'faker'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'faker'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'shoulda-matchers', '~> 3.1'

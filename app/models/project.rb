@@ -15,7 +15,8 @@ class Project < ApplicationRecord
 
     def set_defaults
         self.code ||= BCrypt::Password.create(self.id.to_s + self.title)[0..20]
-        self.owner ||= 0
+        self.owner ||= 1
+        #set the default owner
     end
     
     def time_spent
