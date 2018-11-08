@@ -9,7 +9,7 @@ class ActivitiesController < ApiController
     end
     
     def index 
-        @activities = @project.activities
+        @activities = @project.activities.reorder("id DESC")
         json_response(@activities)
     end
     

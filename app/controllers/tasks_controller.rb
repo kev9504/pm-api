@@ -4,7 +4,7 @@ class TasksController < ApiController
     before_action :set_task, only:[:show, :update, :destroy]
     
     def index 
-        json_response(@project.tasks)
+        json_response(@project.tasks.reorder("id DESC"))
     end
     
     def show 
