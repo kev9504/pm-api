@@ -3,15 +3,16 @@ class ProjectsController < ApiController
     before_action :set_project, only: [:show, :update, :destroy]
     
     def contact
-        #here it should be specified the owner of the project
         request_data = params.permit(
             :contact_name, 
             :contact_email,
             :description).merge(defaults)
+        
         @project = Project.create!(request_data)
         @project.owner = 1
         @project.users << User.find(1)
         @project.save
+        ProjectMailer.with(message: @project.description).alert_email.deliver_now
         json_response(@project, :created)
     end
 

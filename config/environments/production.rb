@@ -86,7 +86,7 @@ Rails.application.configure do
   address: 'smtp.gmail.com',
   port: 587,
   user_name: 'system@redcarats.com',
-  password: 'asdf51651ADF@#$',
+  password: 'asdf51651ADF@#1',
   authentication: 'plain',
   enable_starttls_auto: true
   }
