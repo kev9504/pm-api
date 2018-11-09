@@ -16,7 +16,7 @@ require "action_cable/engine"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-ENV['CORS_ORIGINS'] = 'https://redcarats.com, http://pm.redcarats.com'
+ENV['CORS_ORIGINS'] = 'https://redcarats.com, https://pm.redcarats.com'
 module PmBackend
   class Application < Rails::Application
       config.middleware.insert_before 0, Rack::Cors do
