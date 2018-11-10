@@ -1,1 +1,1 @@
-Please request link credentials and to fg@redcarats.com. 
+Please request link and credentials to fg@redcarats.com. 
