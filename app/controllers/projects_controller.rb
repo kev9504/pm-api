@@ -9,8 +9,8 @@ class ProjectsController < ApiController
             :description).merge(defaults)
         
         @project = Project.create!(request_data)
-        @project.owner = 1
-        @project.users << User.find(1)
+        @project.owner = 2
+        @project.users << User.find(2)
         @project.save
         ProjectMailer.alert_email(@project.description).deliver_now
         json_response(@project, :created)
