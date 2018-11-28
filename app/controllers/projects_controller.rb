@@ -12,7 +12,7 @@ class ProjectsController < ApiController
         @project.owner = 2
         @project.users << User.find(2)
         @project.save
-        ProjectMailer.alert_email(@project.description).deliver_now
+        ProjectMailer.alert_email(@project.description, @project.contact_email).deliver_now
         json_response(@project, :created)
     end
 
